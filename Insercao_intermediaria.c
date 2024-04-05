@@ -14,13 +14,13 @@ int main(int argc, char *argv[]) {
 	lista = NULL;
 	cont = 0;
 	
-	// Inser��o intermediaria em LSE
+	// Inserção intermediaria em LSE
 	
-	//contar quantos nos a lista tem
+	// contar quantos nós a lista tem
 	
 	do{
 		
-		//contar a lista
+		// contar a lista
 		if(lista=NULL){
 			cont = 0;
 		}
@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
 			}	
 		}
 		
-		//usuario informa posicao do no a ser incluido
+		// Usuário informa posição do nó a ser incluido
 		
 		printf("Posicao a ser inserida: ");
 		scanf("%d", &pos);
@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 		}
 		else{
 			if(pos==cont+1){
-				//insercao a direita
+				//inserção a direita
 				p = malloc(sizeof(struct no));
 				scanf("%d",&p->dado);
 				p->prox = NULL;
@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
 				q->prox = p;
 			}
 			else{
-				//insercao intermediaria
+				//inserção intermediaria
 				
 			}
 		}
