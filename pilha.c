@@ -2,76 +2,76 @@
 #include <stdlib.h>
 
 // Definição da estrutura de nó da pilha
-struct Node {
+typedef struct No{
     int data;
-    struct Node* next;
-};
+    struct No* proximo;
+}No;
 
 // Função para criar um novo nó
-struct Node* novoNo(int data) {
-    struct Node* no = (struct Node*)malloc(sizeof(struct Node));
+No* novo_no(int data){
+    No* no = (No*)malloc(sizeof(No));
     if (no == NULL) {
         printf("Memória insuficiente!\n");
         exit(1);
     }
     no->data = data;
-    no->next = NULL;
+    no->proximo = NULL;
     return no;
 }
 
 // Definição da estrutura de pilha
-struct Pilha {
-    struct Node* topo;
-};
+typedef struct{
+    No* topo;
+}Pilha;
 
 // Função para inicializar a pilha
-void inicializarPilha(struct Pilha* pilha) {
+void inicializar_pilha(Pilha* pilha){
     pilha->topo = NULL;
 }
 
 // Função para verificar se a pilha está vazia
-int estaVazia(struct Pilha* pilha) {
+int esta_vazia(Pilha* pilha){
     return (pilha->topo == NULL);
 }
 
 // Função para empilhar um valor na pilha
-void empilhar(struct Pilha* pilha, int data) {
-    struct Node* no = novoNo(data);
-    no->next = pilha->topo;
+void empilhar(Pilha* pilha, int data){
+    No* no = novo_no(data);
+    no->proximo = pilha->topo;
     pilha->topo = no;
 }
 
 // Função para desempilhar um valor da pilha
-int desempilhar(struct Pilha* pilha) {
-    if (estaVazia(pilha)) {
+int desempilhar(Pilha* pilha){
+    if (esta_vazia(pilha)) {
         printf("Erro: Pilha vazia!\n");
         return -1; // Valor de erro
     }
     int data = pilha->topo->data;
-    struct Node* temp = pilha->topo;
-    pilha->topo = pilha->topo->next;
+    No* temp = pilha->topo;
+    pilha->topo = pilha->topo->proximo;
     free(temp);
     return data;
 }
 
 // Função para imprimir os elementos da pilha
-void imprimirPilha(struct Pilha* pilha) {
-    struct Node* atual = pilha->topo;
+void imprimir_pilha(Pilha* pilha){
+    No* atual = pilha->topo;
     printf("\n---------PILHA---------\n");
     while (atual != NULL) {
         printf("%d\n", atual->data);
-        atual = atual->next;
+        atual = atual->proximo;
     }
-    printf("\n------FIM DA PILHA-----\n");
+    printf("------FIM DA PILHA-----\n");
 }
 
-int main() {
-    struct Pilha pilha;
-    inicializarPilha(&pilha);
+int main(){
+    Pilha pilha;
+    inicializar_pilha(&pilha);
     int escolha, valor;
 
-    do {
-        printf("\nEscolha uma operação:\n");
+    do{
+        printf("\nEscolha uma operacao:\n");
         printf("0 - Sair\n");
         printf("1 - Empilhar\n");
         printf("2 - Desempilhar\n");
@@ -79,7 +79,7 @@ int main() {
         printf("Digite sua escolha: ");
         scanf("%d", &escolha);
 
-        switch (escolha) {
+        switch (escolha){
             case 0:
                 printf("Encerrando o programa...\n");
                 break;
@@ -95,12 +95,13 @@ int main() {
                     printf("%d desempilhado com sucesso.\n", valor);
                 break;
             case 3:
-                imprimirPilha(&pilha);
+                imprimir_pilha(&pilha);
                 break;
             default:
                 printf("Escolha inválida! Tente novamente.\n");
         }
-    } while (escolha != 0);
+    }while (escolha != 0);
 
     return 0;
 }
+
